@@ -13,7 +13,7 @@ require(['gremlins'], function(gremlins) {
 
     setInterval(function() {
         var req = new XMLHttpRequest();
-        req.open('GET', '/error', true);
+        req.open('GET', '/', true);
         req.onreadystatechange = function () {
             if (req.readyState == 4) {
                 if(req.status == 200)
@@ -26,7 +26,7 @@ require(['gremlins'], function(gremlins) {
     }, 1000);
 
     var ajaxDelayer = gremlins.species.ajaxDelayer().logger(console);
-
+    var ajaxDestroyer = gremlins.species.ajaxDestroyer().logger(console);
 
     setTimeout(function () {
         ajaxDelayer.stop();
@@ -34,6 +34,7 @@ require(['gremlins'], function(gremlins) {
 
     gremlins.createHorde()
         .gremlin(ajaxDelayer())
+        .gremlin(ajaxDestroyer())
         .mogwai(null)
         .unleash();
 
