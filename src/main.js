@@ -452,7 +452,7 @@ define(function(require) {
         beforeCallbacks = beforeCallbacks.concat(this._mogwais);
         var afterCallbacks  = this._afterCallbacks;
         for (var i = 0, count = gremlinsAndMogwais.length; i < count; i++) {
-            if (typeof gremlinsAndMogwais[i].cleanUp == 'function') {
+            if (gremlinsAndMogwais[i] && typeof gremlinsAndMogwais[i].cleanUp == 'function') {
                 afterCallbacks.push(gremlinsAndMogwais[i].cleanUp);
             }
         }
@@ -472,9 +472,11 @@ define(function(require) {
 
     function inject(services, objects) {
         for (var i = 0, count = objects.length; i < count; i++) {
-            for (var name in services) {
-                if (typeof objects[i][name] === "function") {
-                    objects[i][name](services[name]);
+            if (objects[i]) {
+                for (var name in services) {
+                    if (typeof objects[i][name] === "function") {
+                        objects[i][name](services[name]);
+                    }
                 }
             }
         }
