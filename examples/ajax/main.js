@@ -9,17 +9,17 @@ require.config({
 });
 
 require(['gremlins'], function(gremlins) {
-
-
     setInterval(function() {
         var req = new XMLHttpRequest();
         req.open('GET', '/', true);
         req.onreadystatechange = function () {
             if (req.readyState == 4) {
-                if(req.status == 200)
+                if(req.status == 200) {
                     console.log('bingo');
-                else
+                }
+                else {
                     console.log("Erreur pendant le chargement de la page.\n");
+                }
             }
         };
         req.send(null);
