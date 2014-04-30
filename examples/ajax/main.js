@@ -26,7 +26,7 @@ require(['gremlins'], function(gremlins) {
     }, 1000);
 
     var ajaxDelayer = gremlins.species.ajaxDelayer().logger(console);
-    var ajaxDestroyer = gremlins.species.ajaxDestroyer().logger(console);
+    var ajaxOverrider = gremlins.species.ajaxOverrider().logger(console);
 
     setTimeout(function () {
         ajaxDelayer.stop();
@@ -34,7 +34,7 @@ require(['gremlins'], function(gremlins) {
 
     gremlins.createHorde()
         .gremlin(ajaxDelayer())
-        .gremlin(ajaxDestroyer())
+        .gremlin(ajaxOverrider())
         .mogwai(null)
         .unleash();
 
